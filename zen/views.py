@@ -33,7 +33,7 @@ def zened(request):
     logger.info(sql)
     row = cursor.fetchone()
     if not row:
-        return HttpResponse("请先到交费处交费，TBD")
+        return render(request, 'error.html')
     id = row[0]
 
     usql = """
