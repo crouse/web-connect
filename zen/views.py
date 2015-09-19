@@ -39,14 +39,14 @@ def zened(request):
     usql = """
                 update {0} set race = '{1}', degree = '{2}', birthday = '{3}',
                     personnel_id = '{4}', province = '{5}', city = '{6}',
-                    distinct = '{7}', address = '{8}' where id = '{9}'
+                    district = '{7}', address = '{8}' where id = '{9}'
            """.format(table, dic['race'].encode('utf8'),
                        dic['degree'].encode("utf8"),
                        dic['birthday'].encode("utf8"),
                        dic['personnel_id'].encode("utf8"),
                        dic['province'].encode("utf8"),
                        dic['city'].encode("utf8"),
-                       dic['distinct'].encode("utf8"),
+                       dic['district'].encode("utf8"),
                        dic['address'].encode("utf8"),
                        str(id))
 
