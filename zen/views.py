@@ -5,10 +5,27 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from zen.models import Male
 from zen.models import Female
+from zen.models import Xiaozu
 from django.db import connection
 
 import logging
 logger = logging.getLogger('django')
+
+def xiaozu(request):
+    return render(request, 'xiaozu.html')
+
+def xiaozued(request):
+    dic = request.GET.dict()
+    ret = Xiaozu.objects.filter(name=dic['name'], phone_num=dic['phone_num'])
+    if not ret:
+        person = Xiaozu(**dic)
+        person.save()
+        return render(request, 'xiaozu_bye.html')
+
+    ret = Xiaozu.objects.filter(name=dic['name'], phone_num=dic['phone_num']).update(**dic)
+
+    return render(request, 'xiaozu_bye.html')
+
 
 def zen(request):
     return render(request, 'zen.html')
@@ -25,32 +42,15 @@ def zened(request):
     else:
         obj = Female
         table = "zen_female"
-    #person = obj(**dic)
-    #person.save()
-    cursor = connection.cursor()
-    sql = "select id from {0} where name = '{1}' and phone_num = '{2}' ".format(table, dic['name'].encode("utf8"), dic['phone_num'])
-    cursor.execute(sql)
-    logger.info(sql)
-    row = cursor.fetchone()
-    if not row:
+
+    ret = obj.objects.filter(name=dic['name'], phone_num=dic['phone_num'])
+    if not ret:
+        logger.info("{0} 没有交费".format(dic['name'].encode('utf8')))
         return render(request, 'error.html')
-    id = row[0]
 
-    usql = """
-                update {0} set race = '{1}', degree = '{2}', birthday = '{3}',
-                    personnel_id = '{4}', province = '{5}', city = '{6}',
-                    district = '{7}', address = '{8}' where id = '{9}'
-           """.format(table, dic['race'].encode('utf8'),
-                       dic['degree'].encode("utf8"),
-                       dic['birthday'].encode("utf8"),
-                       dic['personnel_id'].encode("utf8"),
-                       dic['province'].encode("utf8"),
-                       dic['city'].encode("utf8"),
-                       dic['district'].encode("utf8"),
-                       dic['address'].encode("utf8"),
-                       str(id))
-
-    cursor.execute(usql)
-    logger.info(usql)
+    rt = obj.objects.filter(name=dic['name'], phone_num=dic['phone_num']).update(**dic)
+    if not rt:
+        logger.error("{0} 错误".format(dic['name'].encode('utf8')))
+        return HttpResponse("error")
 
     return render(request, 'bye.html')

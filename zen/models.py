@@ -42,8 +42,8 @@ class Male(models.Model):
     ipaddress = models.CharField('IP 地址', max_length=32)
     comes = models.DecimalField('来自手机或者笔记本录入，0：笔记本， 1：手机', max_digits=5, decimal_places=0)
 
-    def __str__(self):
-        return self.id
+    def __unicode__(self):
+        return self.name
 
 class Female(models.Model):
     id = models.AutoField(primary_key=True)
@@ -85,5 +85,17 @@ class Female(models.Model):
     ipaddress = models.CharField('IP 地址', max_length=32)
     comes = models.DecimalField('来自手机或者笔记本录入，0：笔记本， 1：手机', max_digits=5, decimal_places=0)
 
-    def __str__(self):
-        return self.id
+    def __unicode__(self):
+        return self.name
+
+class Xiaozu(models.Model):
+    name = models.CharField("姓名", max_length=32)
+    gender = models.CharField("性别", max_length=10)
+    phone_num = models.CharField("手机号", max_length=32)
+    birthday = models.CharField("生日", max_length=32)
+    address = models.CharField("现居地址（乡镇/小区/街道)", max_length=128)
+    xiaozu_type = models.CharField("小组类型", max_length=32)
+    xiaozu_lang = models.CharField("小组语言种类", max_length=32)
+
+    def __unicode__(self):
+        return self.name
