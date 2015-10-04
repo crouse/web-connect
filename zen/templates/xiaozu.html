@@ -39,7 +39,7 @@
         </div><br>
 
         * 性别：
-        <input type="radio" name="gender" value="男" checked/>
+        <input type="radio" name="gender" value="男" />
         男 &nbsp;
         <input type="radio" name="gender" value="女"/>
         女
@@ -48,8 +48,10 @@
         <h2>2. 学佛小组类型</h2>
         <input type="radio" name="xiaozu_type" value="山上学佛小组" />
         山上学佛小组 &nbsp;
-        <input type="radio" name="xiaozu_type" value="山下学佛小组" checked/>
+        <input type="radio" name="xiaozu_type" value="山下学佛小组" />
         山下学佛小组 &nbsp;
+        <input type="radio" name="xiaozu_type" value="京外学佛小组" />
+        京外学佛小组 &nbsp;
         <br><br>
 
         <h2>2. 学佛小组语种</h2>
@@ -65,7 +67,22 @@
         韩文 &nbsp;
         <input type="radio" name="xiaozu_lang" value="日文"/>
         日文 &nbsp;
+        <input type="radio" name="xiaozu_lang" value="其他"/>
+        其他 &nbsp;
         <br><br>
+
+        <h2>3. 是否参加学佛小组</h2>
+        <input type="radio" name="xiaozu_fou" value="参加小组" />
+        参加学佛小组 &nbsp;
+        <input type="radio" name="xiaozu_fou" value="不参加小组"/>
+        不参加学佛小组 &nbsp;
+
+        <h3>4. 填写小组地址</h3>
+        <div class="input-group">
+            <span class="input-group-addon">* 小组地址</span>
+            <input type="text" name="xiaozu_dizhi" class="form-control" placeholder="">
+        </div><br>
+
         <center>
             <div class="alert alert-danger">请您检查无误后提交，感恩</div>
         </center>

@@ -96,6 +96,9 @@ class Xiaozu(models.Model):
     address = models.CharField("现居地址（乡镇/小区/街道)", max_length=128)
     xiaozu_type = models.CharField("小组类型", max_length=32)
     xiaozu_lang = models.CharField("小组语言种类", max_length=32)
+    xiaozu_dizhi = models.CharField("学佛小组地址", max_length=128)
+    xiaozu_fou = models.CharField("是否参加学佛小组", max_length=128)
+
 
     def __unicode__(self):
         return self.name
