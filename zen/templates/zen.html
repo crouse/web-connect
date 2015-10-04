@@ -68,22 +68,25 @@
 
         <div class="input-group">
             <span class="input-group-addon">出生年月</span>
-            <input type="text" name="birthday" class="form-control" placeholder="如: 1987.01.01">
+            <input type="date" name="birthday" class="form-control" placeholder="如: 1987.01.01">
         </div><br>
 
+        @健康状况
         <div class="input-group">
-            <span class="input-group-addon">健康状况</span>
-            <input type="text" name="health" class="form-control" placeholder="如: 良好/一般/欠佳/重病">
+            <input type="radio" name="health" value="良好" checked>良好&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="health" value="一般">一般&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="health" value="欠佳">欠佳&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="health" value="重病">重病<br>
         </div><br>
 
         * 现居地址，按省市区县依次填写
         <div class="input-group">
             <span class="input-group-addon">(省)</span>
-            <input type="text" name="province" class="form-control" placeholder="如：北京市">
+            <input type="text" name="province" class="form-control" placeholder="如：北京市" value="北京市">
         </div><br>
         <div class="input-group">
             <span class="input-group-addon">(市)</span>
-            <input type="text" name="city" class="form-control" placeholder="如：北京市">
+            <input type="text" name="city" class="form-control" placeholder="如：北京市" value="北京市">
         </div><br>
         <div class="input-group">
             <span class="input-group-addon">(区/县)</span>
@@ -102,7 +105,7 @@
         <h2>2. 毕业学校</h2>
         <div class="input-group">
             <span class="input-group-addon">年</span>
-            <input type="text" name="graduate_time" class="form-control" placeholder="如：2015">
+            <input type="year" name="graduate_time" class="form-control" placeholder="如：2015">
             <span class="input-group-addon">学校</span>
             <input type="text" name="graduate_school" class="form-control" placeholder="如：北京大学">
         </div><br>
@@ -119,20 +122,20 @@
         曾经的工作单位信息:
         <div class="input-group">
             <span class="input-group-addon">年</span>
-            <input type="text" name="first_job_entry_time" class="form-control" placeholder="如：2015">
+            <input type="year" name="first_job_entry_time" class="form-control" placeholder="如：2015">
             <span class="input-group-addon">单位</span>
             <input type="text" name="first_job_workplace" class="form-control" placeholder="如：A 公司">
         </div><br>
         <div class="input-group">
             <span class="input-group-addon">年</span>
-            <input type="text" name="second_job_entry_time" class="form-control" placeholder="如：2014">
+            <input type="year" name="second_job_entry_time" class="form-control" placeholder="如：2014">
             <span class="input-group-addon">单位</span>
             <input type="text" name="second_job_workplace" class="form-control" placeholder="如：B 公司">
         </div><br>
         退休时间、单位:
         <div class="input-group">
             <span class="input-group-addon">年</span>
-            <input type="text" name="retirement_date" class="form-control" placeholder="如：2014">
+            <input type="year" name="retirement_date" class="form-control" placeholder="如：2014">
             <span class="input-group-addon">单位</span>
             <input type="text" name="retirement_workplace" class="form-control" placeholder="如：C 公司">
         </div>
@@ -141,7 +144,7 @@
         <h2>4.学佛信息</h2>
         <div class="input-group">
             <span class="input-group-addon">学佛始年</span>
-            <input type="text" name="year2start_learning_buddhism" class="form-control" placeholder="如：2014">
+            <input type="year" name="year2start_learning_buddhism" class="form-control" placeholder="如：2014">
         </div><br>
         * 学佛因缘：<br>
         <input type="radio" name="reason2learning_dharma" value="由法师（居士）引导学佛" checked>
