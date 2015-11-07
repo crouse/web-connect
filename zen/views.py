@@ -45,7 +45,7 @@ def zened(request):
 
     ret = obj.objects.filter(name=dic['name'], phone_num=dic['phone_num'])
     if not ret:
-        logger.info("{0} 没有交费".format(dic['name'].encode('utf8')))
+        logger.info("{0} 没有交费或者手机号、姓名和交费时填写不一致，请联系管理人员".format(dic['name'].encode('utf8')))
         return render(request, 'error.html')
 
     rt = obj.objects.filter(name=dic['name'], phone_num=dic['phone_num']).update(**dic)
