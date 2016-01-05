@@ -19,7 +19,7 @@ import settings
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^zen/', 'zen.views.zen'),
+    url(r'^$', 'zen.views.zen'),
     url(r'^zened/', 'zen.views.zened'),
     url(r'^xiaozu/', 'zen.views.xiaozu'),
     url(r'^xiaozued/', 'zen.views.xiaozued'),
