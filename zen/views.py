@@ -7,8 +7,9 @@ from zen.models import Male
 from zen.models import Female
 from zen.models import Xiaozu
 from django.db import connection
-
+import django.utils.timezone as timezone
 import logging
+
 logger = logging.getLogger('django')
 
 def xiaozu(request):
@@ -34,7 +35,6 @@ def zened(request):
     table = ""
     obj = ""
     dic = request.GET.dict()
-    dic['comes'] = 1 # comes from mobile phone
 
     if dic['gender'] == u'男':
         obj = Male
@@ -43,14 +43,18 @@ def zened(request):
         obj = Female
         table = "zen_female"
 
-    ret = obj.objects.filter(name=dic['name'], phone_num=dic['phone_num'])
-    if not ret:
-        logger.info("{0} 没有交费或者手机号、姓名和交费时填写不一致，请联系管理人员".format(dic['name'].encode('utf8')))
-        return render(request, 'error.html')
+    dic['guiyi_year'] = str(timezone.now().year)
+    dic['guiyi_date'] = timezone.now().strftime('%Y/%m/%d')
 
-    rt = obj.objects.filter(name=dic['name'], phone_num=dic['phone_num']).update(**dic)
-    if not rt:
-        logger.error("{0} 错误".format(dic['name'].encode('utf8')))
-        return HttpResponse("error")
+    ret = obj.objects.filter(name=dic['name'], phone=dic['phone'])
+
+    rt = None
+
+    if not ret:
+        rt = obj.objects.create(**dic)
+        return HttpResponse(request, 'bye.html')
+
+    else:
+        rt = obj.objects.filter(name=dic['name'], phone=dic['phone']).update(**dic)
 
     return render(request, 'bye.html')
